@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+</head>
+<body>
+  <h1> Upload and view SVG </h1>
+<input id="image-file" type="file" onchange="SaveSVG(this)" />
+<br><br>
+
+<br><br>
+  
+  <script>
+    function SaveSVG(e) {
+    var file = e.files[0];
+    if(file.type === 'image/svg+xml'){
+    var obj = document.createElement('object');
+    obj.data = URL.createObjectURL(file);
+    obj.onload = e => URL.revokeObjectURL(obj.data);
+    document.body.appendChild(obj);
+    
+    console.log(obj.getSVGDocument());
+      
+    }
+}
+  </script>
+</body>
+</html>
